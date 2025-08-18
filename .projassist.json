@@ -1,0 +1,22 @@
+{
+  "project_name": "Camera_Stans",
+  "profile": "pyqt",
+  "project_path": "C:\OneDrive\Vioprint\OneDrive - Vioprint\software projecten\camera stansmachine\Camera_Stans",
+  "venv_root": "C:\\\\virt omgeving",
+  "venv_path": "C:\\\\virt omgeving\\\\Camera_Stans\\\\venv",
+  "github_repo": "",
+  "scripts": [
+    { "path": "main.py", "github_url": "" },
+    { "path": "core/__init__.py", "github_url": "" },
+    { "path": "core/logging_setup.py", "github_url": "" },
+    { "path": "tools/log_report.py", "github_url": "" }
+  ],
+  "log_file": "logs/log.txt",
+  "json_log_file": "logs/log.jsonl",
+  "logging": {
+    "log_file": "logs/log.txt",
+    "json_log_file": "logs/log.jsonl",
+    "log_format": "default",
+    "backup_on_edit": true
+  }
+}

@@ -1,0 +1,101 @@
+Afsprakenblok
+
+Gebruik altijd het standaard wijzigformulier: ADD / REPLACE / DELETE / CREATE.
+Antwoord steeds door exact één formulier in te vullen (labels onveranderd), met:
+
+Markers verplicht bij code: gebruik mijn vaste marker-structuur (# [SECTION: …] / # [END: SECTION: …]).
+
+Bij Python: markers rond imports, top-level functies, classes, en main-guard.
+
+Markers komen alleen boven/onder blokken; niet binnen bodies.
+
+Logging verplicht:
+
+Bij nieuwe scripts: voeg basis logging toe (module-logger, start/stop meldingen bij main/entry-points, korte debug in kernfuncties).
+
+Bij wijzigingen: behoud bestaande logger; voeg waar nuttig 2-3 duidelijke logregels toe (geen overkill).
+
+Contextregels = 3 (tenzij anders nodig).
+
+REPLACE/DELETE: Marker-van en Marker-tot moeten exact matchen met het doelbestand.
+
+Voorstel-blok bevat het volledige blok (incl. markers).
+
+CREATE: vul ook JSON-registratie, commit-boodschap en “Openen-in”.
+
+Defaults:
+
+JSON registreren = ja (in .projassist.json, groep scripts).
+
+Git = ja (commit en push).
+
+Encoding = utf-8.
+
+Bestaat-al (CREATE) = mislukken tenzij ik anders vraag.
+
+Commit-boodschap: kort, beschrijvend.
+
+Antwoord nooit met code buiten het formulier; alleen het formulier zelf.
+
+
+hieronder vind je de 4 standaard formulieren
+
+ADD FORM
+Bestand: <volledig pad of relatief>
+Actie: ADD
+Marker-van: <optioneel, vaak leeg>
+Marker-tot: <optioneel, vaak leeg>
+Contextregels: 3
+Blok-ID: <optioneel>
+Korte reden: <kort waarom>
+
+Voorstel-blok:
+<volledige bloktekst die toegevoegd moet worden — bij code inclusief jouw markers>
+
+
+DELETE FORM
+Bestand: <pad>
+Actie: DELETE
+Marker-van: # [SECTION: ...]
+Marker-tot: # [END: SECTION: ...]
+Contextregels: 3
+Blok-ID: <optioneel>
+Korte reden: <kort waarom>
+
+Voorstel-blok:
+<leeg laten>
+
+
+REPLACE FORM
+Bestand: <pad>
+Actie: REPLACE
+Marker-van: # [SECTION: ...]
+Marker-tot: # [END: SECTION: ...]
+Contextregels: 3
+Blok-ID: <optioneel>
+Korte reden: <kort waarom>
+
+Voorstel-blok:
+<volledige NIEUWE blok, inclusief exact dezelfde markers>
+
+
+CREATE FORM
+Bestand: <volledig pad naar nieuw bestand>
+Actie: CREATE
+Bestandstype: <py|ui|txt|json|md>
+Encoding: utf-8
+Bestaat-al: mislukken   # mislukken|overschrijven|skip
+Markers-toepassen: ja   # meestal ja voor .py
+JSON-registratie: ja
+JSON-pad: <pad naar .projassist.json>
+JSON-entry-naam: <logische naam>
+JSON-tags: <komma-gescheiden, optioneel>
+JSON-groep: scripts
+Git: ja
+Commit-bericht: <korte tekst>
+Openen-in: vscode       # none|vscode|qt-designer
+
+Korte reden: <waarom dit script>
+
+Voorstel-blok:
+<volledige bestandsinhoud — bij code inclusief jouw marker-structuur>
