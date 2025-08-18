@@ -1,6 +1,6 @@
 # handlers/roi_selector.py
 
-# [SECTION: Imports]
+# [SECTION: IMPORTS]
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, Tuple
@@ -8,8 +8,10 @@ from typing import Optional, Tuple
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
+# [END: SECTION: IMPORTS]
 # [END: Imports]
 # [CLASS: Roi]
+# [SECTION: CLASS: Roi]
 @dataclass
 class Roi:
     x: int
@@ -17,9 +19,11 @@ class Roi:
     w: int
     h: int
 
+# [END: SECTION: CLASS: Roi]
 # [END: Roi]
 
 # [CLASS: RoiSelector]
+# [SECTION: CLASS: RoiSelector]
 class RoiSelector(QtCore.QObject):
     """
     Eenvoudig ROI-tekenhulpmiddel op een QLabel met KeepAspectRatio rendering.
@@ -42,6 +46,7 @@ class RoiSelector(QtCore.QObject):
 
         self._label.installEventFilter(self)
 
+# [END: FUNC: __init__]
 # [END: __init__]
 # [FUNC: setActive]
     def setActive(self, on: bool) -> None:
@@ -51,6 +56,7 @@ class RoiSelector(QtCore.QObject):
         self._p1_label = None
         self._label.update()
 
+# [END: FUNC: setActive]
 # [END: setActive]
 # [FUNC: clear]
     def clear(self) -> None:
@@ -58,11 +64,13 @@ class RoiSelector(QtCore.QObject):
         self._label.update()
         self.roiChanged.emit(None)
 
+# [END: FUNC: clear]
 # [END: clear]
 # [FUNC: roi]
     def roi(self) -> Optional[Roi]:
         return self._roi_img
 
+# [END: FUNC: roi]
 # [END: roi]
 # [FUNC: eventFilter]
     def eventFilter(self, obj, ev):
@@ -94,6 +102,7 @@ class RoiSelector(QtCore.QObject):
                 return False
         return super().eventFilter(obj, ev)
 
+# [END: FUNC: eventFilter]
 # [END: eventFilter]
 # [FUNC: _build_roi]
     def _build_roi(self) -> Optional[Roi]:
@@ -116,6 +125,7 @@ class RoiSelector(QtCore.QObject):
             return None
         return Roi(x=x, y=y, w=w, h=h)
 
+# [END: FUNC: _build_roi]
 # [END: _build_roi]
 # [FUNC: _paint_overlay]
     def _paint_overlay(self) -> None:
@@ -136,4 +146,6 @@ class RoiSelector(QtCore.QObject):
             pass
         painter.end()
 # [END: RoiSelector]
+# [END: FUNC: _paint_overlay]
+# [END: SECTION: CLASS: RoiSelector]
 # [END: _paint_overlay]
