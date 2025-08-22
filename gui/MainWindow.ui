@@ -15,6 +15,7 @@
       </property>
     <widget class="QWidget" name="centralwidget">
       <layout class="QHBoxLayout" name="centralLayout">
+        <!--[UI: CENTRAL_LAYOUT_ITEMS]-->
         <item>
           <widget class="QLabel" name="lblView">
             <property name="minimumSize">
@@ -465,11 +466,35 @@
               </widget>
             </widget>
           </item>
+        <!--[END: UI: CENTRAL_LAYOUT_ITEMS]-->
         </layout>
       </widget>
     <widget class="QStatusBar" name="statusbar" />
-    <widget class="QMenuBar" name="menubar" />
+    <widget class="QMenuBar" name="menubar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1200</width>
+          <height>33</height>
+          </rect>
+        </property>
+      <!--[UI: MENUBAR_MENUS]-->
+      <!--[END: UI: MENUBAR_MENUS]-->
+      <!--[UI: MENUBAR_ADDACTIONS]-->
+      <!--[END: UI: MENUBAR_ADDACTIONS]-->
+      </widget>
+    <!--[UI: ACTIONS]-->
+    <!--[END: UI: ACTIONS]-->
+    <!--[UI: DOCKWIDGETS]-->
+    <!--[END: UI: DOCKWIDGETS]-->
     </widget>
-  <resources />
-  <connections />
+  <resources>
+    <!--[UI: RESOURCES]-->
+    <!--[END: UI: RESOURCES]-->
+    </resources>
+  <connections>
+    <!--[UI: CONNECTIONS]-->
+    <!--[END: UI: CONNECTIONS]-->
+    </connections>
   </ui>
