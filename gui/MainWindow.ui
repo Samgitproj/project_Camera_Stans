@@ -1,12 +1,475 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="windowTitle"><string>Nieuwe PyQt App</string></property>
-  <property name="geometry"><rect><x>0</x><y>0</y><width>1000</width><height>700</height></rect></property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QStatusBar" name="statusbar"/>
- </widget>
- <resources/><connections/>
-</ui>
+  <class>MainWindow</class>
+  <widget class="QMainWindow" name="MainWindow">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1200</width>
+        <height>800</height>
+        </rect>
+      </property>
+    <property name="windowTitle">
+      <string>Camera Inspector - Detect Stip</string>
+      </property>
+    <widget class="QWidget" name="centralwidget">
+      <layout class="QHBoxLayout" name="centralLayout">
+        <item>
+          <widget class="QLabel" name="lblView">
+            <property name="minimumSize">
+              <size>
+                <width>640</width>
+                <height>480</height>
+                </size>
+              </property>
+            <property name="frameShape">
+              <enum>QFrame::Shape::Box</enum>
+              </property>
+            <property name="text">
+              <string>Live View</string>
+              </property>
+            <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+            </widget>
+          </item>
+        <item>
+          <widget class="QTabWidget" name="tabWidget">
+            <property name="currentIndex">
+              <number>0</number>
+              </property>
+            <widget class="QWidget" name="tabCapture">
+              <attribute name="title">
+                <string>Capture</string>
+                </attribute>
+              <layout class="QVBoxLayout" name="verticalLayoutCapture">
+                <item>
+                  <layout class="QHBoxLayout" name="layoutConn">
+                    <item>
+                      <widget class="QPushButton" name="btnConnect">
+                        <property name="text">
+                          <string>Connect</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item>
+                      <widget class="QPushButton" name="btnDisconnect">
+                        <property name="text">
+                          <string>Disconnect</string>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </item>
+                <item>
+                  <layout class="QHBoxLayout" name="layoutAcq">
+                    <item>
+                      <widget class="QPushButton" name="btnStartLive">
+                        <property name="text">
+                          <string>Start Live</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item>
+                      <widget class="QPushButton" name="btnStopLive">
+                        <property name="text">
+                          <string>Stop Live</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item>
+                      <widget class="QPushButton" name="btnSoftwareTrigger">
+                        <property name="text">
+                          <string>Software Trigger</string>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </item>
+                <item>
+                  <widget class="QCheckBox" name="chkDrawROI">
+                    <property name="text">
+                      <string>ROI tekenen</string>
+                      </property>
+                    </widget>
+                  </item>
+                <item>
+                  <spacer name="verticalSpacer">
+                    <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                      </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>20</width>
+                        <height>40</height>
+                        </size>
+                      </property>
+                    </spacer>
+                  </item>
+                <item>
+                  <widget class="QGroupBox" name="grpCameraSettings">
+                    <property name="title">
+                      <string>Camera settings</string>
+                      </property>
+                    <layout class="QFormLayout" name="formCamSettings">
+                      <item row="0" column="0">
+                        <widget class="QLabel" name="labelExposure">
+                          <property name="text">
+                            <string>Exposure (ms)</string>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="0" column="1">
+                        <widget class="QDoubleSpinBox" name="dsbExposure">
+                          <property name="minimum">
+                            <double>0.010000000000000</double>
+                            </property>
+                          <property name="maximum">
+                            <double>1000.000000000000000</double>
+                            </property>
+                          <property name="singleStep">
+                            <double>0.050000000000000</double>
+                            </property>
+                          <property name="value">
+                            <double>3.000000000000000</double>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="1" column="0">
+                        <widget class="QLabel" name="labelGain">
+                          <property name="text">
+                            <string>Gain (dB)</string>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="1" column="1">
+                        <widget class="QDoubleSpinBox" name="dsbGain">
+                          <property name="minimum">
+                            <double>0.000000000000000</double>
+                            </property>
+                          <property name="maximum">
+                            <double>36.000000000000000</double>
+                            </property>
+                          <property name="singleStep">
+                            <double>0.100000000000000</double>
+                            </property>
+                          <property name="value">
+                            <double>0.000000000000000</double>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="2" column="0">
+                        <widget class="QLabel" name="labelGamma">
+                          <property name="text">
+                            <string>Gamma</string>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="2" column="1">
+                        <widget class="QDoubleSpinBox" name="dsbGamma">
+                          <property name="minimum">
+                            <double>0.100000000000000</double>
+                            </property>
+                          <property name="maximum">
+                            <double>3.000000000000000</double>
+                            </property>
+                          <property name="singleStep">
+                            <double>0.050000000000000</double>
+                            </property>
+                          <property name="value">
+                            <double>1.000000000000000</double>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="3" column="0">
+                        <widget class="QLabel" name="labelBlackLevel">
+                          <property name="text">
+                            <string>Black level</string>
+                            </property>
+                          </widget>
+                        </item>
+                      <item row="3" column="1">
+                        <widget class="QDoubleSpinBox" name="dsbBlackLevel">
+                          <property name="minimum">
+                            <double>0.000000000000000</double>
+                            </property>
+                          <property name="maximum">
+                            <double>50.000000000000000</double>
+                            </property>
+                          <property name="singleStep">
+                            <double>0.500000000000000</double>
+                            </property>
+                          <property name="value">
+                            <double>0.000000000000000</double>
+                            </property>
+                          </widget>
+                        </item>
+                      </layout>
+                    </widget>
+                  </item>
+                <item>
+                  <widget class="QGroupBox" name="grpPointer">
+                    <property name="title">
+                      <string>Pointer selector</string>
+                      </property>
+                    <layout class="QVBoxLayout" name="verticalLayoutPointer">
+                      <item>
+                        <widget class="QCheckBox" name="chkPointerProbe">
+                          <property name="text">
+                            <string>Pointer selector aan/uit</string>
+                            </property>
+                          </widget>
+                        </item>
+                      <item>
+                        <layout class="QHBoxLayout" name="horizontalLayoutPointer">
+                          <item>
+                            <widget class="QLabel" name="labelPointerValue">
+                              <property name="text">
+                                <string>Pixelwaarde:</string>
+                                </property>
+                              </widget>
+                            </item>
+                          <item>
+                            <widget class="QLabel" name="lblPointerValue">
+                              <property name="text">
+                                <string>x=- y=- Gray=-</string>
+                                </property>
+                              </widget>
+                            </item>
+                          </layout>
+                        </item>
+                      </layout>
+                    </widget>
+                  </item>
+                </layout>
+              </widget>
+            <widget class="QWidget" name="tabDetect">
+              <attribute name="title">
+                <string>Detectie</string>
+                </attribute>
+              <layout class="QVBoxLayout" name="verticalLayoutDetect">
+                <item>
+                  <layout class="QFormLayout" name="formParams">
+                    <item row="0" column="0">
+                      <widget class="QLabel" name="labelBlur">
+                        <property name="text">
+                          <string>Blur (oneven)</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="0" column="1">
+                      <widget class="QSpinBox" name="spinBlur">
+                        <property name="minimum">
+                          <number>1</number>
+                          </property>
+                        <property name="maximum">
+                          <number>31</number>
+                          </property>
+                        <property name="singleStep">
+                          <number>2</number>
+                          </property>
+                        <property name="value">
+                          <number>3</number>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="1" column="0">
+                      <widget class="QLabel" name="labelAdaptive">
+                        <property name="text">
+                          <string>Adaptieve drempel</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="1" column="1">
+                      <widget class="QCheckBox" name="chkAdaptive">
+                        <property name="text">
+                          <string>Gebruik adaptief</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="2" column="0">
+                      <widget class="QLabel" name="labelThresh">
+                        <property name="text">
+                          <string>Threshold</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="2" column="1">
+                      <widget class="QSpinBox" name="spinThresh">
+                        <property name="minimum">
+                          <number>0</number>
+                          </property>
+                        <property name="maximum">
+                          <number>255</number>
+                          </property>
+                        <property name="value">
+                          <number>180</number>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="3" column="0">
+                      <widget class="QLabel" name="labelBlock">
+                        <property name="text">
+                          <string>Adaptive block</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="3" column="1">
+                      <widget class="QSpinBox" name="spinBlock">
+                        <property name="minimum">
+                          <number>3</number>
+                          </property>
+                        <property name="maximum">
+                          <number>101</number>
+                          </property>
+                        <property name="singleStep">
+                          <number>2</number>
+                          </property>
+                        <property name="value">
+                          <number>25</number>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="4" column="0">
+                      <widget class="QLabel" name="labelC">
+                        <property name="text">
+                          <string>Adaptive C</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="4" column="1">
+                      <widget class="QSpinBox" name="spinC">
+                        <property name="minimum">
+                          <number>-50</number>
+                          </property>
+                        <property name="maximum">
+                          <number>50</number>
+                          </property>
+                        <property name="value">
+                          <number>5</number>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="5" column="0">
+                      <widget class="QLabel" name="labelInvert">
+                        <property name="text">
+                          <string>Invert</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="5" column="1">
+                      <widget class="QCheckBox" name="chkInvert">
+                        <property name="text">
+                          <string>Wit = stip</string>
+                          </property>
+                        <property name="checked">
+                          <bool>true</bool>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="6" column="0">
+                      <widget class="QLabel" name="labelMinArea">
+                        <property name="text">
+                          <string>Min area</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="6" column="1">
+                      <widget class="QSpinBox" name="spinMinArea">
+                        <property name="minimum">
+                          <number>1</number>
+                          </property>
+                        <property name="maximum">
+                          <number>100000</number>
+                          </property>
+                        <property name="value">
+                          <number>15</number>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="7" column="0">
+                      <widget class="QLabel" name="labelMaxArea">
+                        <property name="text">
+                          <string>Max area (0 = geen)</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="7" column="1">
+                      <widget class="QSpinBox" name="spinMaxArea">
+                        <property name="minimum">
+                          <number>0</number>
+                          </property>
+                        <property name="maximum">
+                          <number>1000000</number>
+                          </property>
+                        <property name="value">
+                          <number>0</number>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="8" column="0">
+                      <widget class="QLabel" name="labelShowAll">
+                        <property name="text">
+                          <string>Tonen</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item row="8" column="1">
+                      <widget class="QCheckBox" name="chkShowAll">
+                        <property name="text">
+                          <string>Toon alle stippen</string>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </item>
+                <item>
+                  <layout class="QHBoxLayout" name="layoutAnalyze">
+                    <item>
+                      <widget class="QPushButton" name="btnAnalyze">
+                        <property name="text">
+                          <string>Analyseer</string>
+                          </property>
+                        </widget>
+                      </item>
+                    <item>
+                      <spacer name="horizontalSpacer">
+                        <property name="orientation">
+                          <enum>Qt::Orientation::Horizontal</enum>
+                          </property>
+                        <property name="sizeHint" stdset="0">
+                          <size>
+                            <width>40</width>
+                            <height>20</height>
+                            </size>
+                          </property>
+                        </spacer>
+                      </item>
+                    </layout>
+                  </item>
+                <item>
+                  <spacer name="verticalSpacer2">
+                    <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                      </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>20</width>
+                        <height>40</height>
+                        </size>
+                      </property>
+                    </spacer>
+                  </item>
+                </layout>
+              </widget>
+            </widget>
+          </item>
+        </layout>
+      </widget>
+    <widget class="QStatusBar" name="statusbar" />
+    <widget class="QMenuBar" name="menubar" />
+    </widget>
+  <resources />
+  <connections />
+  </ui>
